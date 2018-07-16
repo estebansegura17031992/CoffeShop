@@ -9,6 +9,7 @@
   "author": "Esteban Segura Benavides",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
