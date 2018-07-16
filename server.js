@@ -22,6 +22,9 @@ if(process.env.NODE_ENV!=='production'){
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+app.use('/api/authentication', require('./api/authentication/authentication.routes'));
+app.use('/api/user', require('./api/user/user.routes'));
+
 //CONFIGURE OUR APPLICATION
 var port = process.env.PORT || 3000; 
 
