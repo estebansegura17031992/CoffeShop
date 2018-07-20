@@ -1,0 +1,24 @@
+<div id="register-container" class="container">
+	<h1>Register</h1>
+	<form ng-submit="register()">
+		<div class="form-group">
+			<label for="username" class="form-label">Username</label>
+			<input type="text" name="username" class="form-control" ng-model="username" placeholder="Username" required>
+		</div>
+
+		<div class="form-group">
+			<label for="email" class="form-label">Email</label>
+			<input type="text" name="email" class="form-control" ng-model="email" placeholder="Email" required>
+		</div>
+
+		<div class="form-group">
+			<label for="password" class="form-label">Password</label>
+			<input type="password" name="password" class="form-control" ng-model="password" placeholder="Password" required>
+		</div>
+
+		<div class="form-group">
+			<a class="btn btn-danger btn-register" href="#!/login">Back</a>
+			<button id="btn-register" type="submit" class="btn btn-success btn-register">Register</button>
+		</div>
+	</form>
+</div>
