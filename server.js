@@ -8,6 +8,35 @@ var session = require('cookie-session');
 
 var config = require('./config');
 
+app.use(session({
+	resave: false,
+	saveUninitialized: false,
+	secret: config.secret,
+	httpOnly:false
+}));
+
+//Parte III
+app.use(express.static(__dirname + '/public'));
+
+app.use(session({
+	resave: false,
+	saveUninitialized: false,
+	secret: config.secret,
+	httpOnly:false
+}));
+
+// use JWT auth to secure the api
+app.use('/api', expressJwt({ 
+	secret: config.secret,
+	getToken: function fromCookie (req) {
+	    var token = req.session.token;
+	    if (token) {
+	      	return token;
+	    } 
+    return null; 
+	}
+}).unless({ path: ['/api/authentication/login', '/api/authentication/register'] }));
+
 if(process.env.NODE_ENV!=='production'){
 	//MORGAN USE FOR SEE BEAUTY REQUEST FOR THE SERVER
 	var morgan = require('morgan');
