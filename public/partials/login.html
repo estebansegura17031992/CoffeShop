@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="alert alert-success alert-dismissible" role="alert" ng-show="loginComplete">
+	  Login Complete
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div class="alert alert-success alert-dismissible" role="alert" ng-show="registerComplete">
+	  Succesfully Register
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div class="alert alert-danger alert-dismissible" role="alert" ng-show="loginError">
+	  User or Password Incorrect. Try Again
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div id="login-cart-div">
+	    <form ng-submit="login()">
+	    	<div class="login-input form-group">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" name="email" ng-model="email" class="form-control">
+			</div>
+			<div class="login-input form-group">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" name="password" ng-model="password" class="form-control">
+			</div>
+			<button class="btn btn-success btn-login" type="submit" ng-click="login">Entrar</button>
+		</form>
+	</div>
+	<div id="div-register">
+		Aun no ha creado una cuenta... <a  href="#!/register">Register</a>
+	</div>
+</div>
