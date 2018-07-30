@@ -43,7 +43,12 @@ appController.controller('LoginCtrl',['$scope','$routeParams','$location','$cook
 			Login.login({},postData,function success(response){
 				if(response.success){
 					$scope.loginComplete = true;
-					$location.path('/');
+					if(response.isAdmin){
+						$location.path('/admin')
+					} else {
+						$location.path('/');
+					}
+					
 				}
 				else 
 					$scope.loginError = true;
