@@ -43,7 +43,12 @@ appController.controller('LoginCtrl',['$scope','$routeParams','$location','$cook
 			Login.login({},postData,function success(response){
 				if(response.success){
 					$scope.loginComplete = true;
-					$location.path('/');
+					if(response.isAdmin){
+						$location.path('/admin')
+					} else {
+						$location.path('/');
+					}
+					
 				}
 				else 
 					$scope.loginError = true;
@@ -57,12 +62,21 @@ appController.controller('LoginCtrl',['$scope','$routeParams','$location','$cook
 
 appController.controller('RegisterCtrl',['$scope','$location', 'Register',
 	function RegisterCtrl($scope,$location,Register){
+		
+		
 		$scope.register = function(){
+			var isAdmin = false;
+
+			if($scope.accountType=="admin"){
+				isAdmin = true
+			}
+
 			var postData = {
 				fullName: $scope.fullName,
 				username: $scope.username,
 				email: $scope.email,
-				password: $scope.password
+				password: $scope.password,
+				admin: isAdmin
 			}
 
 			Register.register({},postData,function success(response){

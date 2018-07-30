@@ -22,6 +22,14 @@
 		</div>
 
 		<div class="form-group">
+			<label for="password" class="form-label">Tipo de cuenta</label>
+			<select name="accountType" ng-model="accountType" class="form-control">
+				<option value="admin">Administrador</option>
+				<option value="user">Usuario</option>
+			</select>
+		</div>
+
+		<div class="form-group">
 			<a class="btn btn-danger btn-register" href="#!/login">Back</a>
 			<button id="btn-register" type="submit" class="btn btn-success btn-register">Register</button>
 		</div>
