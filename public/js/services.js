@@ -39,3 +39,11 @@ appServices.factory("LogOut",['$resource',
 		})
 	}
 ])
+
+appServices.factory("AddStore",["$resource",
+	function($resource){
+		return $resource('api/store/addStore',{},{
+			addStore: {method: 'POST',cache:false,isArray:false}
+		})
+	}
+])

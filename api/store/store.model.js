@@ -53,3 +53,7 @@ var StoreSchema = new Schema({
     },
     branches: [BranchSchema]
 })
+
+var Store = mongoose.model('Store',StoreSchema);
+
+module.exports = Store;
