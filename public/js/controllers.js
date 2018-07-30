@@ -59,6 +59,7 @@ appController.controller('RegisterCtrl',['$scope','$location', 'Register',
 	function RegisterCtrl($scope,$location,Register){
 		$scope.register = function(){
 			var postData = {
+				fullName: $scope.fullName,
 				username: $scope.username,
 				email: $scope.email,
 				password: $scope.password
