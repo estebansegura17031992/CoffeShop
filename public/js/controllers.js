@@ -122,3 +122,40 @@ appController.controller('EditUserCtrl',['$scope','$location','$routeParams','Ed
 		}
 	}
 ]);
+
+appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','checkCreds','InfoUser','AddStore','LogOut',
+	function AddStoreCtrl($scope,$location,$routeParams,checkCreds,InfoUser,AddStore,LogOut){
+		if (checkCreds()) {
+			InfoUser.infoUser({},function success(response){
+				$scope.userId = response.userId
+
+				$scope.addStore = function(){
+					var postData = {
+						nameStore: $scope.nameStore,
+						descriptionStore: $scope.descriptionStore,
+					}
+		
+					console.log(postData);
+					AddStore.addStore(postData,function success(response){
+						$location.path('/showStore')
+					},function error(response){
+		
+					})
+				}
+
+				$scope.logOut = function(){
+						LogOut.logOut({id:$scope.userId},{},function success(response){
+						$location.path('/login')
+					},function error(errorResponse){
+						console.log(errorResponse);
+					})
+				}
+			},function error(errorResponse){
+				$scope.message = errorResponse;
+			})
+			
+		} else {
+			$location.path("/login")
+		}
+	}
+]);

@@ -10,6 +10,10 @@ login_mean.config(['$routeProvider','$locationProvider',function($routeProvider,
 			templateUrl: 'partials/indexAdmin.html',
 			controller: 'IndexCtrl'
 		})
+		.when("/addStore",{
+			templateUrl: 'partials/addStore.html',
+			controller: 'AddStoreCtrl'
+		})
 		.when("/login",{
 			templateUrl: 'partials/login.html',
 			controller: 'LoginCtrl'
