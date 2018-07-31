@@ -189,3 +189,25 @@ appController.controller('DetailStoreCtrl',['$scope','$routeParams','GetInfoStor
 		})
 	}
 ])
+
+appController.controller('AddBranchCtrl',['$scope','$location','$routeParams','AddBranch',
+	function AddBranchCtrl($scope,$location,$routeParams,AddBranch){
+		$scope.addBranch = function(){
+			var storeId = $routeParams.id;
+			var postData = {
+				id:storeId,
+				nameBranch: $scope.nameBranch,
+				addressBranch: $scope.addressBranch,
+				telephoneBranch: $scope.telephoneBranch
+			}
+
+			AddBranch.addBranch({id:storeId},postData,function success(response){
+				console.log("Exito");
+				$location.path('/store/'+storeId);
+			},function error(response){
+				console.log("Error");
+				console.log(response);
+			})
+		}
+	}	
+])
