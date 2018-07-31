@@ -13,8 +13,29 @@ function addStore(req,res,next){
 
 }
 
+function getStores(req,res,next){
+	Store.find({},function(err,stores){
+		if(err){
+			return res.status(400).send({success: false,message: err});
+    	} else {
+      		return res.status(200).send({success: true,stores:stores});
+    	}
+	})
+}
+
+function infoStore(req,res,next){
+	Store.findById({_id:req.params.id},function(err,store){
+		if(err){
+			return res.status(400).send({success: false,message: err});
+    	} else {
+      		return res.status(200).send({success: true,store:store});
+		}
+	})
+}
 var controller = {
-	addStore:addStore
+	addStore:addStore,
+	getStores:getStores,
+	infoStore:infoStore
 }
 
 module.exports = controller

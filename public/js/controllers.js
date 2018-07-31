@@ -123,7 +123,7 @@ appController.controller('EditUserCtrl',['$scope','$location','$routeParams','Ed
 	}
 ]);
 
-appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','checkCreds','InfoUser','AddStore','LogOut',
+appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','checkCreds','InfoUser','Store','LogOut',
 	function AddStoreCtrl($scope,$location,$routeParams,checkCreds,InfoUser,AddStore,LogOut){
 		if (checkCreds()) {
 			InfoUser.infoUser({},function success(response){
@@ -137,7 +137,7 @@ appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','ch
 		
 					console.log(postData);
 					AddStore.addStore(postData,function success(response){
-						$location.path('/showStore')
+						$location.path('/showStores')
 					},function error(response){
 		
 					})
@@ -159,3 +159,33 @@ appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','ch
 		}
 	}
 ]);
+
+appController.controller('ShowStoresCtrl',['$scope','GetStores',
+	function ShowStoresCtrl($scope,GetStores){
+		$scope.stores = [];
+		GetStores.getStores({},function succes(response){
+			$scope.stores = response.stores;
+		}, function error(response){
+			console.log("Erro!!!!!")
+		});
+
+	}	
+])
+
+appController.controller('DetailStoreCtrl',['$scope','$routeParams','GetInfoStore',
+	function DetailStoreCtrl($scope,$routeParams,GetInfoStore){
+		var userId = $routeParams.id;
+		GetInfoStore.getInfoStore({id:userId},function succes(response){
+			$scope.noBranch = true;
+			$scope.nameStore = response.store.nameStore;
+			$scope.descriptionStore = response.store.descriptionStore;
+			$scope.branches = response.store.branches;
+			$scope.userId = userId;
+			if($scope.branches.length != 0){
+				$scope.noBranch = false;
+			}
+		},function error(response){
+
+		})
+	}
+])

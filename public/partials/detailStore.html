@@ -1,0 +1,12 @@
+<div ng-include src="'partials/main_menu_admin.html'"></div>
+<div class="container">
+    <h1>{{nameStore}}</h1>
+    <a href="#!/store/{{userId}}/addBranch">Agregar Sede</a>
+    <ul>
+        <li ng-show="noBranch"><b>{{nameStore}} no tiene sedes relacionadas</b></li>
+        <li ng-repeat="branch in branches">
+            {{branch.nameBranch}}
+    
+        </li>
+    </ul>
+</div>
