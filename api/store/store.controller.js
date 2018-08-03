@@ -54,11 +54,32 @@ function addBranch(req,res,next){
 		}
 	})
 }
+
+function getInfoBranch(req,res,next){
+	Store.findById({_id:req.params.idStore},function(error,store){
+		if(error){
+			return res.status(400).send({success: false,message: err});
+		} else {
+			var branches = store.branches;
+			let products = []
+			for (let i = 0; i < branches.length; i++) {
+				if(branches[i]._id = req.params.idBranch){
+					return res.status(200).send({success: true,branch:branches[i]});
+					
+				}
+			}
+
+			
+		}
+	});
+}
+
 var controller = {
 	addStore:addStore,
 	getStores:getStores,
 	infoStore:infoStore,
-	addBranch: addBranch
+	addBranch: addBranch,
+	getInfoBranch:getInfoBranch
 }
 
 module.exports = controller

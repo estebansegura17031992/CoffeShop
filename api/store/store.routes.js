@@ -7,4 +7,5 @@ router.post("/addStore",controller.addStore);
 router.get("/getStores",controller.getStores);
 router.get("/infoStore/:id",controller.infoStore);
 router.post("/:id/addBranch",controller.addBranch);
+router.get("/:idStore/branch/:idBranch",controller.getInfoBranch);
 module.exports = router;

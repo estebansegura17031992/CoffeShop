@@ -71,3 +71,11 @@ appServices.factory("AddBranch",["$resource",
 		})
 	}
 ])
+
+appServices.factory("GetInfoBranch",["$resource",
+	function($resource){
+		return $resource('api/store/:idStore/branch/:idBranch',{},{
+			getInfoBranch: {method:'GET',cache:false,isArray:false}
+		})
+	}
+])

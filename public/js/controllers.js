@@ -210,4 +210,21 @@ appController.controller('AddBranchCtrl',['$scope','$location','$routeParams','A
 			})
 		}
 	}	
+]);
+
+appController.controller('ShowProductsCtrl',["$scope","$routeParams","GetInfoBranch",
+	function ShowProductsCtrl($scope,$routeParams,GetInfoBranch){
+		$scope.noProducts = true;
+
+		let idStore = $routeParams.idStore;
+		let idBranch = $routeParams.idBranch;
+		
+		GetInfoBranch.getInfoBranch({idStore:idStore,idBranch:idBranch},{},function success(response){
+			$scope.nameBranch = response.branch.nameBranch;
+			$scope.products = response.branch.products;
+		},function error(response){
+
+		});
+		
+	}
 ])
