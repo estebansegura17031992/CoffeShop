@@ -123,7 +123,7 @@ appController.controller('EditUserCtrl',['$scope','$location','$routeParams','Ed
 	}
 ]);
 
-appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','checkCreds','InfoUser','AddStore','LogOut',
+appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','checkCreds','InfoUser','Store','LogOut',
 	function AddStoreCtrl($scope,$location,$routeParams,checkCreds,InfoUser,AddStore,LogOut){
 		if (checkCreds()) {
 			InfoUser.infoUser({},function success(response){
@@ -137,7 +137,7 @@ appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','ch
 		
 					console.log(postData);
 					AddStore.addStore(postData,function success(response){
-						$location.path('/showStore')
+						$location.path('/showStores')
 					},function error(response){
 		
 					})
@@ -159,3 +159,72 @@ appController.controller('AddStoreCtrl',['$scope','$location','$routeParams','ch
 		}
 	}
 ]);
+
+appController.controller('ShowStoresCtrl',['$scope','GetStores',
+	function ShowStoresCtrl($scope,GetStores){
+		$scope.stores = [];
+		GetStores.getStores({},function succes(response){
+			$scope.stores = response.stores;
+		}, function error(response){
+			console.log("Erro!!!!!")
+		});
+
+	}	
+])
+
+appController.controller('DetailStoreCtrl',['$scope','$routeParams','GetInfoStore',
+	function DetailStoreCtrl($scope,$routeParams,GetInfoStore){
+		var userId = $routeParams.id;
+		GetInfoStore.getInfoStore({id:userId},function succes(response){
+			$scope.noBranch = true;
+			$scope.nameStore = response.store.nameStore;
+			$scope.descriptionStore = response.store.descriptionStore;
+			$scope.branches = response.store.branches;
+			$scope.userId = userId;
+			if($scope.branches.length != 0){
+				$scope.noBranch = false;
+			}
+		},function error(response){
+
+		})
+	}
+])
+
+appController.controller('AddBranchCtrl',['$scope','$location','$routeParams','AddBranch',
+	function AddBranchCtrl($scope,$location,$routeParams,AddBranch){
+		$scope.addBranch = function(){
+			var storeId = $routeParams.id;
+			var postData = {
+				id:storeId,
+				nameBranch: $scope.nameBranch,
+				addressBranch: $scope.addressBranch,
+				telephoneBranch: $scope.telephoneBranch
+			}
+
+			AddBranch.addBranch({id:storeId},postData,function success(response){
+				console.log("Exito");
+				$location.path('/store/'+storeId);
+			},function error(response){
+				console.log("Error");
+				console.log(response);
+			})
+		}
+	}	
+]);
+
+appController.controller('ShowProductsCtrl',["$scope","$routeParams","GetInfoBranch",
+	function ShowProductsCtrl($scope,$routeParams,GetInfoBranch){
+		$scope.noProducts = true;
+
+		let idStore = $routeParams.idStore;
+		let idBranch = $routeParams.idBranch;
+		
+		GetInfoBranch.getInfoBranch({idStore:idStore,idBranch:idBranch},{},function success(response){
+			$scope.nameBranch = response.branch.nameBranch;
+			$scope.products = response.branch.products;
+		},function error(response){
+
+		});
+		
+	}
+])

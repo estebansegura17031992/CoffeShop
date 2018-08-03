@@ -1,0 +1,23 @@
+<div ng-include src="'partials/main_menu_admin.html'"></div>
+<div id="store-container" class="container">
+    <h1>Crear Establecimiento</h1>
+    <form ng-submit="addBranch()">
+        <div class="form-group">
+            <label for="nameBranch" class="form-label">Nombre de la tienda</label>
+            <input type="text" name="nameBranch" class="form-control" ng-model="nameBranch" placeholder="Nombre de la tienda" required>
+        </div>
+
+        <div class="form-group">
+            <label for="addressBranch" class="form-label">Direccion</label>
+            <input type="text" name="addressBranch" class="form-control" ng-model="addressBranch" placeholder="Descripcion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telephoneBranch" class="form-label">Telefono</label>
+            <input type="tel" name="telephoneBranch" class="form-control" ng-model="telephoneBranch" placeholder="Descripcion" required>
+        </div>
+
+        <button class="btn btn-success btn-login" type="submit" align="right">Crear</button>
+        
+    </form>
+</div>

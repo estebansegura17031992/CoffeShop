@@ -47,3 +47,35 @@ appServices.factory("AddStore",["$resource",
 		})
 	}
 ])
+
+appServices.factory("GetStores",["$resource",
+	function($resource){
+		return $resource('api/store/getStores',{},{
+			getStores: {method: 'GET',cache:false,isArray:false}
+		})
+	}
+])
+
+appServices.factory("GetInfoStore",["$resource",
+	function($resource){
+		return $resource('api/store/infoStore/:id',{},{
+			getInfoStore: {method: 'GET', cache:false,isArray:false}
+		})
+	}
+])
+
+appServices.factory("AddBranch",["$resource",
+	function($resource){
+		return $resource('api/store/:id/addBranch',{},{
+			addBranch: {method: 'POST',cache:false,isArray:false}
+		})
+	}
+])
+
+appServices.factory("GetInfoBranch",["$resource",
+	function($resource){
+		return $resource('api/store/:idStore/branch/:idBranch',{},{
+			getInfoBranch: {method:'GET',cache:false,isArray:false}
+		})
+	}
+])
