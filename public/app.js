@@ -6,6 +6,30 @@ login_mean.config(['$routeProvider','$locationProvider',function($routeProvider,
 			templateUrl: 'partials/index.html',
 			controller: 'IndexCtrl'
 		})
+		.when("/admin",{
+			templateUrl: 'partials/indexAdmin.html',
+			controller: 'IndexCtrl'
+		})
+		.when("/addStore",{
+			templateUrl: 'partials/addStore.html',
+			controller: 'AddStoreCtrl'
+		})
+		.when("/showStores",{
+			templateUrl: 'partials/showStores.html',
+			controller: 'ShowStoresCtrl'
+		})
+		.when("/store/:id",{
+			templateUrl: 'partials/detailStore.html',
+			controller: 'DetailStoreCtrl'
+		})
+		.when("/store/:id/addBranch",{
+			templateUrl: 'partials/addBranch.html',
+			controller: 'AddBranchCtrl'
+		})
+		.when("/store/:idStore/branch/:idBranch",{
+			templateUrl: 'partials/showProducts.html',
+			controller: 'ShowProductsCtrl'
+		})
 		.when("/login",{
 			templateUrl: 'partials/login.html',
 			controller: 'LoginCtrl'

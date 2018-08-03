@@ -1,0 +1,19 @@
+<div ng-include src="'partials/main_menu_admin.html'"></div>
+<div id="store-container" class="container">
+        <h1>Crear Tienda</h1>
+        <form ng-submit="addStore()">
+            <div class="form-group">
+                <label for="nameStore" class="form-label">Nombre de la tienda</label>
+                <input type="text" name="nameStore" class="form-control" ng-model="nameStore" placeholder="Nombre de la tienda" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="descriptionStore" class="form-label">Descripcion</label>
+                <textarea name="descriptionStore" class="form-control" ng-model="descriptionStore" placeholder="Descripcion" required>
+                </textarea>
+            </div>
+
+            <button class="btn btn-success btn-login" type="submit" align="right">Crear</button>
+          
+        </form>
+    </div>

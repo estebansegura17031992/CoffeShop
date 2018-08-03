@@ -47,8 +47,9 @@ function login(req,res,next){
 				};
 
 			    var token = jwt.sign(payload, config.secret);
-			    req.session.token = token;
-			    return res.status(200).send({success: true, message: 'Authentication complete',token:token});
+				req.session.token = token;
+				//En la respuesta se envia si el usuario que se identifico con sus credenciales es admin o usuario
+			    return res.status(200).send({success: true, message: 'Authentication complete',isAdmin:user.admin,token:token});
 		  	}   
 		}
 	});

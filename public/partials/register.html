@@ -2,6 +2,11 @@
 	<h1>Register</h1>
 	<form ng-submit="register()">
 		<div class="form-group">
+			<label for="fullName" class="form-label">Full name</label>
+			<input type="text" name="fullName" class="form-control" ng-model="fullName" placeholder="Full Name" required>
+		</div>
+
+		<div class="form-group">
 			<label for="username" class="form-label">Username</label>
 			<input type="text" name="username" class="form-control" ng-model="username" placeholder="Username" required>
 		</div>
@@ -14,6 +19,14 @@
 		<div class="form-group">
 			<label for="password" class="form-label">Password</label>
 			<input type="password" name="password" class="form-control" ng-model="password" placeholder="Password" required>
+		</div>
+
+		<div class="form-group">
+			<label for="password" class="form-label">Tipo de cuenta</label>
+			<select name="accountType" ng-model="accountType" class="form-control">
+				<option value="admin">Administrador</option>
+				<option value="user">Usuario</option>
+			</select>
 		</div>
 
 		<div class="form-group">

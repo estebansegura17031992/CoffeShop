@@ -1,0 +1,12 @@
+<div ng-include src="'partials/main_menu_admin.html'"></div>
+<div class="container">
+    <h1>{{nameStore}}</h1>
+    <a href="#!/store/{{userId}}/addBranch">Agregar Sede</a>
+    <ul>
+        <li ng-show="noBranch"><b>{{nameStore}} no tiene establecimientos relacionadas</b></li>
+        <li ng-repeat="branch in branches">
+                <b style="margin-right: 50%;">{{branch.nameBranch}}</b><a href="#!/store/{{userId}}/branch/{{branch._id}}">Ver Productos</a>  <a href="/editBranch/{{branch._id}}" style="margin: 0 2% 0 2%;">Editar</a>  <a href="/deleteBranch/{{branch._id}}">Eliminar</a>
+    
+        </li>
+    </ul>
+</div>
