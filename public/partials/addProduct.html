@@ -1,0 +1,23 @@
+<div ng-include src="'partials/main_menu_admin.html'"></div>
+<div id="store-container" class="container">
+    <h1>Agregar Producto</h1>
+    <form ng-submit="addProduct()">
+        <div class="form-group">
+            <label for="nameProduct" class="form-label">Nombre deL producto</label>
+            <input type="text" name="nameProduct" class="form-control" ng-model="nameProduct" placeholder="Nombre de la tienda" required>
+        </div>
+
+        <div class="form-group">
+            <label for="priceProduct" class="form-label">Precio</label>
+            <input type="number" name="priceProduct" class="form-control" ng-model="priceProduct" placeholder="Descripcion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descriptionProduct" class="form-label">Descripcion del producto</label>
+            <textarea type="tel" name="descriptionProduct" class="form-control" ng-model="descriptionProduct" placeholder="Descripcion"></textarea>
+        </div>
+
+        <button class="btn btn-success btn-login" type="submit" align="right">Agregar</button>
+        
+    </form>
+</div>
