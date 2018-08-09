@@ -87,3 +87,11 @@ appServices.factory("AddProduct",['$resource',
 		})
 	}
 ])
+
+appServices.factory("GetProduct",["$resource",
+	function($resource){
+		return $resource('api/store/:idStore/branch/:idBranch/product/:idProduct',{},{
+			getProduct: {method: 'GET',cache:false,isArray:false}
+		})
+	}
+]);

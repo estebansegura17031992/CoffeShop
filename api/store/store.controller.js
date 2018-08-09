@@ -103,13 +103,31 @@ function addProduct(req,res,next){
 		}
 	})
 }
+
+function getProduct(req,res,next){
+	var idStore = req.params.idStore;
+	var idBranch = req.params.idBranch;
+	var idProduct = req.params.idProduct;
+
+	Store.findById({_id: idStore},function(err,store){
+		if(err){
+			return res.status(400).send({success: false,message: err});
+		}
+		
+		var branch = store.branches.id(idBranch);
+		var product = branch.products.id(idProduct);
+		return res.status(200).send({success: true,product: product});
+	});
+}
+
 var controller = {
 	addStore:addStore,
 	getStores:getStores,
 	infoStore:infoStore,
 	addBranch: addBranch,
 	getInfoBranch:getInfoBranch,
-	addProduct:addProduct
+	addProduct:addProduct,
+	getProduct:getProduct
 }
 
 module.exports = controller

@@ -257,3 +257,16 @@ appController.controller('AddProductCtrl',["$scope","$routeParams","$location","
 		};
 	}
 ])
+
+appController.controller("DetailProduct",["$scope","$routeParams","GetProduct",
+	function DetailProduct($scope,$routeParams,GetProduct){
+		var idStore = $routeParams.idStore;
+		var idBranch = $routeParams.idBranch;
+		var idProduct = $routeParams.idProduct;
+		
+		GetProduct.getProduct({idStore,idBranch,idProduct},{},function success(response){
+			$scope.product = response.product;
+		},function error(errorResponse){
+			
+		});
+	}])
