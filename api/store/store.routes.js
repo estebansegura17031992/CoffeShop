@@ -8,4 +8,6 @@ router.get("/getStores",controller.getStores);
 router.get("/infoStore/:id",controller.infoStore);
 router.post("/:id/addBranch",controller.addBranch);
 router.get("/:idStore/branch/:idBranch",controller.getInfoBranch);
+router.post("/:idStore/branch/:idBranch/addProduct",controller.addProduct);
+router.get("/:idStore/branch/:idBranch/product/:idProduct",controller.getProduct);
 module.exports = router;

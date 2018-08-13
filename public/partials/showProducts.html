@@ -1,11 +1,11 @@
 <div ng-include src="'partials/main_menu_admin.html'"></div>
 <div class="container">
     <h1>{{nameBranch}}</h1>
-    <a href="store/{{idStore}}/branch/{{idBranch}}/addProduct">Agregar Producto</a>
+    <a href="#!/store/{{idStore}}/branch/{{idBranch}}/addProduct">Agregar Producto</a>
     <ul>
         <li ng-show="noProducts"><b>Este establecimiento no tiene productos relacionadas</b></li>
         <li ng-repeat="product in products">
-    
+            <b style="margin-right:50%">{{product.nameProduct}}</b><a href="#!/store/{{idStore}}/branch/{{idBranch}}/product/{{product._id}}">Detalle</a>  <a href="#!/store/{{idStore}}/branch/{{idBranch}}/product/{{product._id}}/edit" style="margin: 0 2% 0 2%;">Editar</a>  <a href="#!/store/{{idStore}}/branch/{{idBranch}}/product/{{product._id}}/deleteProduct">Eliminar</a>
         </li>
     </ul>
 </div>

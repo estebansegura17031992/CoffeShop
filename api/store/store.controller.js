@@ -74,12 +74,60 @@ function getInfoBranch(req,res,next){
 	});
 }
 
+function addProduct(req,res,next){
+	var nameProduct = req.body.nameProduct;
+	var priceProduct = req.body.priceProduct;
+	var descriptionProduct = req.body.descriptionProduct;
+
+	var idStore = req.params.idStore;
+	var idBranch = req.params.idBranch;
+	Store.findById({_id: idStore},function(err,store){
+		if(err){
+			return res.status(400).send({success: false,message: err});
+		}
+		
+		for(var i=0;i<store.branches.length;i++){
+			console.log(store.branches[i]);
+			if(store.branches[i]._id = idBranch){
+				store.branches[i].products.push({nameProduct:nameProduct,priceProduct:priceProduct,descriptionProduct:descriptionProduct});
+				Store.update({_id:store._id},store)
+					.then(
+						function(){
+							return res.status(200).send({success: true,store:store})
+						}
+					)
+					.catch(function(){
+						return res.status(400).send({success: false,message: err});
+					});
+			}
+		}
+	})
+}
+
+function getProduct(req,res,next){
+	var idStore = req.params.idStore;
+	var idBranch = req.params.idBranch;
+	var idProduct = req.params.idProduct;
+
+	Store.findById({_id: idStore},function(err,store){
+		if(err){
+			return res.status(400).send({success: false,message: err});
+		}
+		
+		var branch = store.branches.id(idBranch);
+		var product = branch.products.id(idProduct);
+		return res.status(200).send({success: true,product: product});
+	});
+}
+
 var controller = {
 	addStore:addStore,
 	getStores:getStores,
 	infoStore:infoStore,
 	addBranch: addBranch,
-	getInfoBranch:getInfoBranch
+	getInfoBranch:getInfoBranch,
+	addProduct:addProduct,
+	getProduct:getProduct
 }
 
 module.exports = controller

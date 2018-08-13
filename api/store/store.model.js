@@ -19,11 +19,11 @@ var productsSchema = new Schema({
         type: String,
         required: true
     },
-    price: {
+    priceProduct: {
         type: Number,
         required: true
     },
-    description: {
+    descriptionProduct: {
         type: String,
         requiered: true
     }

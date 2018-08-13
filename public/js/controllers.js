@@ -214,17 +214,59 @@ appController.controller('AddBranchCtrl',['$scope','$location','$routeParams','A
 
 appController.controller('ShowProductsCtrl',["$scope","$routeParams","GetInfoBranch",
 	function ShowProductsCtrl($scope,$routeParams,GetInfoBranch){
-		$scope.noProducts = true;
+		$scope.noProducts = false;
 
-		let idStore = $routeParams.idStore;
-		let idBranch = $routeParams.idBranch;
+		$scope.idStore = $routeParams.idStore;
+		$scope.idBranch = $routeParams.idBranch;
 		
-		GetInfoBranch.getInfoBranch({idStore:idStore,idBranch:idBranch},{},function success(response){
+		GetInfoBranch.getInfoBranch({idStore:$scope.idStore,idBranch:$scope.idBranch},{},function success(response){
 			$scope.nameBranch = response.branch.nameBranch;
+			if(response.branch.products.length==0){
+				$scope.noProducts = true;
+			}
 			$scope.products = response.branch.products;
+
+			
 		},function error(response){
 
 		});
 		
 	}
 ])
+
+appController.controller('AddProductCtrl',["$scope","$routeParams","$location","AddProduct",
+	function AddProductCtrl($scope,$routeParams,$location,AddProduct){
+		$scope.addProduct = function(){
+			var nameProduct = $scope.nameProduct;
+			var priceProduct = $scope.priceProduct;
+			var descriptionProduct = $scope.descriptionProduct;
+			var idBranch = $routeParams.idBranch;
+			var idStore = $routeParams.idStore;
+
+			AddProduct.addProduct({idStore:idStore,idBranch:idBranch},
+									{nameProduct:nameProduct,priceProduct:priceProduct,
+									descriptionProduct,descriptionProduct},function success(response){
+										$location.path("store/"+idStore+"/branch/"+idBranch);
+									},function error(errorResponse){
+
+									})
+
+
+
+
+		};
+	}
+])
+
+appController.controller("DetailProduct",["$scope","$routeParams","GetProduct",
+	function DetailProduct($scope,$routeParams,GetProduct){
+		var idStore = $routeParams.idStore;
+		var idBranch = $routeParams.idBranch;
+		var idProduct = $routeParams.idProduct;
+		
+		GetProduct.getProduct({idStore,idBranch,idProduct},{},function success(response){
+			$scope.product = response.product;
+		},function error(errorResponse){
+			
+		});
+	}])
