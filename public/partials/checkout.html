@@ -1,0 +1,10 @@
+<div ng-include src="'partials/main_menu.html'"></div>
+<div class="container">
+    <h1>Carrito de compras</h1>
+    <ul>
+        <li ng-repeat="item in items">{{item.nameProduct}} - {{item.priceProduct}}</li>
+    </ul>
+    <label class="form-label">Total: {{total}}</label>
+    <br/>
+    <button class="btn btn-primary" ng-click="shop()">Comprar</button>
+</div>

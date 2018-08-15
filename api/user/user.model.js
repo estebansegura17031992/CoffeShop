@@ -3,6 +3,34 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
+
+var productSchema = new Schema({
+    nameProduct: {
+        type: String,
+        required: true
+    },
+    priceProduct: {
+        type: Number,
+        required: true
+    },
+    descriptionProduct: {
+        type: String,
+        requiered: true
+    }
+});
+
+var carShopingSchema = new Schema({
+	products: [productSchema],
+	priceProduct: {
+		type:Number,
+		required:true
+	},
+	date:{
+		type: Date,
+		default: Date.now
+	}
+})
+
 var UserSchema = new Schema({
 	fullName: {
 		type: String,
@@ -31,7 +59,8 @@ var UserSchema = new Schema({
 	date: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	shopping: [carShopingSchema]
 });
 
 UserSchema.methods.comparePassword = function(password){

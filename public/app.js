@@ -50,6 +50,18 @@ login_mean.config(['$routeProvider','$locationProvider',function($routeProvider,
 			templateUrl: 'partials/editUser.html',
 			controller: 'EditUserCtrl'
 		})
+		.when("/shop",{
+			templateUrl: "partials/shop.html",
+			controller: "ShopCtrl"
+		})
+		.when("/checkout",{
+			templateUrl: "partials/checkout.html",
+			controller: "CheckoutCtrl"
+		})
+		.when("/viewShop",{
+			templateUrl: "partials/viewShop.html",
+			controller: "ViewShopCtrl"
+		})
 
 	$locationProvider.html5Mode(false).hashPrefix("!");
 }])
