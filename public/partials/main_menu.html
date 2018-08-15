@@ -6,7 +6,16 @@
       <ul class="nav navbar-nav">
         <li class="{{active_home}}"><a href="#!/">Home</a></li>
         <li class="{{active_edit}}"><a href="#!/edit/{{userId}}">Editar</a></li>
-        <li class="{{active_edit}}"><a href="#!/viewStores">Comprar</a></li>
+        <li>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comprar <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#!/shop">Realizar Pedido</a>
+              <a href="#!/checkout">Carrito</a>
+              <a href="#!/viewShop">Historial de pedidos</a>
+            </li>
+          </ul>
+        </li>
         <li><a ng-click="logOut()">Salir</a></li>
       </ul>
     </div>

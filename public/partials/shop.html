@@ -1,0 +1,26 @@
+<div ng-include src="'partials/main_menu.html'"></div>
+<div class="container">
+    <h1>Realizar pedido</h1>
+    <label for="nameStore" class="form-label">Tienda</label>
+    <select name="nameStore" ng-model="selectStore" class="form-control" ng-change="showBranches()">
+        <option value="-1">Seleccione una tienda</option>
+        <option ng-repeat="store in stores" value={{store._id}} ng-model="selectStore">
+            {{store.nameStore}}
+        </option>
+    </select>
+
+    <br/>
+    <label for="nameBranch" class="form-label">Sucursal</label>
+   
+    <select class="form-control" ng-options="branch.nameBranch for branch in branches" ng-change="showProducts()" ng-model="selectBranch">
+        
+    </select>
+    
+
+    <br/>
+
+    <label ng-show = "hasProducts" class="form-label">Productos:</label>
+    <ul>
+        <li ng-repeat="product in products">{{product.nameProduct}}  <button class="btn btn-primary" ng-click="agregarCarrito(product)">Agregar al carrito</button></li>
+    </ul>
+</div>
