@@ -1,0 +1,13 @@
+<div ng-include src="'partials/main_menu.html'"></div>
+<div class="container">
+    <div ng-repeat="shop in shops">
+        <label class="form-label">Fecha</label>
+        <b>{{shop.date}}</b>
+        <br/>
+        <label class="form-label">Productos</label>
+        <ul>
+            <li ng-repeat="product in shop.products">{{product.nameProduct}} - {{product.priceProduct}}</li>
+        </ul>
+        <hr/>
+    </div>
+</div>

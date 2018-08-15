@@ -95,3 +95,19 @@ appServices.factory("GetProduct",["$resource",
 		})
 	}
 ]);
+
+appServices.factory("Shop",["$resource",
+	function($resource){
+		return $resource('api/user/shop',{},{
+			shop: {method: 'POST', cache:false, isArray:false}
+		})
+	}
+])
+
+appServices.factory("GetShops",["$resource",
+	function($resource){
+		return $resource('api/user/shop',{},{
+			getShops: {method: 'GET', cache:false, isArray:false}
+		})
+	}
+])
